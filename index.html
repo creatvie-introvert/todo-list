@@ -9,38 +9,40 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>
-        <h1>To-Do List</h1>
-    </header>
+    <div class="container">
+        <header>
+            <h1>To-Do List</h1>
+        </header>
 
-    <main>
-        <section id="task-input">
-            <input type="text" id="new-task" placeholder="Add a new task...">
-            <button id="add-task">Add</button>
-        </section>
+        <main>
+            <section id="task-input">
+                <input type="text" id="new-task" placeholder="Add a new task...">
+                <button id="add-task">Add</button>
+            </section>
 
-        <ul id="task-list"></ul>
-    </main>
+            <ul id="task-list"></ul>
+        </main>
 
-    <footer>
-        <span id="task-count">
-            0 items left
-        </span>
-        <div id="filters">
-            <button data-filter="all" class="active">
-                All
+        <footer>
+            <span id="task-count">
+                0 items left
+            </span>
+            <div id="filters">
+                <button data-filter="all" class="active">
+                    All
+                </button>
+                <button data-filter="active">
+                    Active
+                </button>
+                <button data-filter="completed">
+                    Completed
+                </button>
+            </div>
+            <button id="clear-completed">
+                Clear Completed
             </button>
-            <button data-filter="active">
-                Active
-            </button>
-            <button data-filter="completed">
-                Completed
-            </button>
-        </div>
-        <button id="clear-completed">
-            Clear Completed
-        </button>
-    </footer>
+        </footer>
+    </div>
 
     <script src="assets/js/script.js"></script>
 </body>

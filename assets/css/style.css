@@ -1,0 +1,266 @@
+/* === Theme Variables === */
+
+/* Light mode (default) */
+:root {
+  --color-background: #FAF9F6;
+  --color-surface: #FFFFFF;
+  --color-text: #1F1F1F;
+  --color-accent-green: #6B8E23;
+  --color-accent-red: #E53935;
+  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --color-background: #1C1B1A;
+  --color-surface: #2A2A28;
+  --color-text: #FDFCF9;
+  --color-accent-green: #A4C639;
+  --color-accent-red: #F87171;
+  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* === CSS Reset === */
+
+/* Box sizing rules */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+html, body {
+  height: 100%;
+  font-size: 10px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Remove list styles */
+ul, ol {
+  list-style: none;
+}
+
+/* Remove default link styles */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Reset buttons */
+button {
+  font: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Reset form elements */
+input, textarea, select {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+/* === Header === */
+header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* === App Container === */
+.container {
+  background: var(--color-surface);
+  padding: 2rem;
+  border-radius: 0.8rem;
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto; /* ✅ center container horizontally */
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* === Task Input Row === */
+#task-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#new-task {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border, #E5E1DA);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#add-task {
+  background: var(--color-accent-green);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#add-task:hover {
+  background: #55731a;
+}
+
+/* === Task List === */
+#task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border, #E5E1DA);
+  border-radius: 4px;
+  background: var(--color-surface);
+}
+
+.task-text {
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.task-completed .task-text {
+  text-decoration: line-through;
+  color: #6B6B6B;
+  opacity: 0.7;
+}
+
+.delete-task {
+  color: var(--color-accent-red);
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background: none;
+}
+
+/* === Footer (mobile default) === */
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 0.9rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border, #E5E1DA);
+}
+
+#task-count {
+  color: var(--color-text);
+}
+
+#filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#filters button {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-border, #E5E1DA);
+  background: var(--color-surface);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#filters button:hover {
+  border-color: var(--color-accent-green);
+  color: var(--color-accent-green);
+}
+
+#filters .active {
+  border-color: var(--color-accent-green);
+  background: var(--color-accent-green);
+  color: #fff;
+  font-weight: 600;
+}
+
+#clear-completed {
+  color: var(--color-accent-red);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+#clear-completed:hover {
+  color: #b71c1c;
+}
+
+/* === Tablet (768px–1023px) === */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    max-width: 70rem;
+    padding: 2.5rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #filters {
+    justify-content: center;
+    margin: 0 auto; /* ✅ center filters row */
+  }
+}
+
+/* === Desktop (1024px+) === */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 96rem;
+    padding: 3rem;
+  }
+
+  footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #filters {
+    flex: 1;
+    justify-content: center;
+  }
+
+  #task-count {
+    text-align: left;
+    flex: 1;
+  }
+
+  #clear-completed {
+    text-align: right;
+    flex: 1;
+  }
+}

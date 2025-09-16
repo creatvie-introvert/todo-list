@@ -31,7 +31,7 @@ function renderTasks() {
 
         // create <checkbox> element
         const checkbox = document.createElement('input')
-        checkbox.type = 'checkbox';
+        checkbox.type = 'checkbox';     // set input type
 
         // create a <span> element for text from task in task object
         const span = document.createElement('span');
@@ -42,42 +42,32 @@ function renderTasks() {
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = 'X';    // update the button text content
         deleteBtn.classList.add('delete-task'); // add .delete-task to the button
-        deleteBtn.setAttribute('aria-label', `Delete ${task.task}`);
+        // add aria label to button
+        deleteBtn.setAttribute('aria-label', `Delete ${task.task}`);    
         
         // add chckbox, span and deleteBtn to the li
         li.append(checkbox, span, deleteBtn);
 
+        // initial UI sync (load state)
         updateTaskUI(task, li, checkbox)
 
-        // if (task.completed) {
-        //     // if checkbox is checked
-        //     checkbox.checked = true;
-            
-        //     li.classList.add('task-completed'); // add .task-completed to the li
-        // }
-
+        // checkbox listener
         checkbox.addEventListener('change', () => {
-            task.completed = checkbox.checked;
-            updateTaskUI(task, li, checkbox);
-            console.log(task.completed);
-            console.log(task);
-            // if checkbox is checked
-            // if (checkbox.checked) {
-            //     // update object (task) key (completed) to true
-            //     task.completed = true;
-            //     li.classList.add('task-completed'); // add .task-completed to the li
-            // }
-            // // if checkbox is not checked
-            // else {
-            //     // update object (task) key (completed) to false
-            //     task.completed = false;
-            //     li.classList.remove('task-completed'); // remove .task-completed from the li
-            // }
-
-            
+            task.completed = checkbox.checked;  // update object based in checked state
+            updateTaskUI(task, li, checkbox);   // sync UI + save 
+            console.log(task.completed);    // debugging: output value of completed from task object
+            console.log(task);    // debugging: output the check/uncheck object
         });
 
-        
+        // delete button listener
+        deleteBtn.addEventListener('click', () => {
+            // remove task from data object
+            const idx = tasks.indexOf(task);   // find index of task
+            if (idx !== -1) tasks.splice(idx, 1);
+
+            saveTasks();    // save changes
+            renderTasks();  // re-rendered list
+        });
 
         // add each li to the end of the ul
         taskList.appendChild(li);
@@ -88,13 +78,12 @@ function renderTasks() {
 }
 
 function updateTaskUI(task, li, checkbox) {
-            checkbox.checked = task.completed;
+    checkbox.checked = task.completed;  // update object to match checked state
 
-            if (task.completed) {
-                li.classList.add('task-completed'); // add .task-completed to the li
-            }
-            else {
-                li.classList.remove('task-completed'); // remove .task-completed from the li
-            }
-            saveTasks();
-        }
+    if (task.completed) {
+        li.classList.add('task-completed'); // add .task-completed to the li
+    }
+    else {
+        li.classList.remove('task-completed'); // remove .task-completed from the li
+    }
+}

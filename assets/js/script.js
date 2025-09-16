@@ -26,6 +26,12 @@ function renderTasks() {
 
     // loop through each task in tasks (ln8) 
     for (const task of tasks) {
+        const newLi = document.createElement('li');
+        newLi.textContent = task.task;
+
+        taskList.appendChild(newLi);
         console.log(task) // debugging: log each task in console
     }
+
+    console.log(taskList.children.length);  // debugging: output the length of the array
 }

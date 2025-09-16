@@ -28,7 +28,6 @@ function renderTasks() {
     for (const task of tasks) {
         // create new <li> element
         const li = document.createElement('li');
-        li.classList.add('task-text');
 
         // create <checkbox> element
         const checkbox = document.createElement('input')
@@ -36,15 +35,42 @@ function renderTasks() {
 
         // create a <span> element for text from task in task object
         const span = document.createElement('span');
-        span.textContent = task.task;
+        span.textContent = task.task; // update the span text
+        span.classList.add('task-text');    // add .task-text to the span
 
         // create <button> element
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'X';
-        deleteBtn.classList.add('delete-task');
+        deleteBtn.textContent = 'X';    // update the button text content
+        deleteBtn.classList.add('delete-task'); // add .delete-task to the button
         
         // add chckbox, span and deleteBtn to the li
         li.append(checkbox, span, deleteBtn);
+
+        if (task.completed) {
+            // if checkbox is checked
+            checkbox.checked = true;
+            
+            li.classList.add('task-completed'); // add .task-completed to the li
+        }
+
+        checkbox.addEventListener('change', () => {
+            // if checkbox is checked
+            if (checkbox.checked) {
+                // update object (task) key (completed) to true
+                task.completed = true;
+                li.classList.add('task-completed'); // add .task-completed to the li
+            }
+            // if checkbox is not checked
+            else {
+                // update object (task) key (completed) to false
+                task.completed = false;
+                li.classList.remove('task-completed'); // remove .task-completed from the li
+            }
+
+            saveTasks();
+            console.log(task.completed);
+            console.log(task);
+        });
 
         // add each li to the end of the ul
         taskList.appendChild(li);

@@ -21,39 +21,27 @@
 }
 
 /* === CSS Reset === */
-
-/* Box sizing rules */
 *, *::before, *::after {
   box-sizing: border-box;
 }
-
-/* Remove default margin and padding */
 * {
   margin: 0;
   padding: 0;
 }
-
-/* Set core body defaults */
 html, body {
   height: 100%;
-  font-size: 10px;
+  font-size: 10px; /* ✅ keep root small so spacing stays balanced */
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
-/* Remove list styles */
 ul, ol {
   list-style: none;
 }
-
-/* Remove default link styles */
 a {
   text-decoration: none;
   color: inherit;
 }
-
-/* Reset buttons */
 button {
   font: inherit;
   background: none;
@@ -61,8 +49,6 @@ button {
   cursor: pointer;
   padding: 0;
 }
-
-/* Reset form elements */
 input, textarea, select {
   font: inherit;
   border: none;
@@ -74,9 +60,8 @@ header {
   text-align: center;
   margin-bottom: 1rem;
 }
-
 header h1 {
-  font-size: 2rem;
+  font-size: 2.4rem; /* bigger heading */
   font-weight: 700;
   color: var(--color-text);
 }
@@ -88,11 +73,12 @@ header h1 {
   border-radius: 0.8rem;
   width: 100%;
   max-width: 50rem;
-  margin: 0 auto; /* ✅ center container horizontally */
+  margin: 0 auto;
   box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  font-size: 1.4rem; /* ✅ base font size for container */
 }
 
 /* === Task Input Row === */
@@ -100,26 +86,23 @@ header h1 {
   display: flex;
   gap: 0.5rem;
 }
-
 #new-task {
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border: 1px solid var(--color-border, #E5E1DA);
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
-
 #add-task {
   background: var(--color-accent-green);
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   transition: background 0.2s ease;
 }
-
 #add-task:hover {
   background: #55731a;
 }
@@ -130,31 +113,28 @@ header h1 {
   flex-direction: column;
   gap: 0.5rem;
 }
-
 #task-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.8rem;
   border: 1px solid var(--color-border, #E5E1DA);
   border-radius: 4px;
   background: var(--color-surface);
+  font-size: 1.4rem;
 }
-
 .task-text {
   flex: 1;
-  margin-left: 0.5rem;
+  margin-left: 0rem;
 }
-
 .task-completed .task-text {
   text-decoration: line-through;
   color: #6B6B6B;
   opacity: 0.7;
 }
-
 .delete-task {
   color: var(--color-accent-red);
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   margin-left: 0.5rem;
   cursor: pointer;
   background: none;
@@ -165,49 +145,43 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   padding-top: 0.5rem;
   border-top: 1px solid var(--color-border, #E5E1DA);
 }
-
 #task-count {
   color: var(--color-text);
 }
-
 #filters {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
 }
-
 #filters button {
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid var(--color-border, #E5E1DA);
   background: var(--color-surface);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 1.3rem;
 }
-
 #filters button:hover {
   border-color: var(--color-accent-green);
   color: var(--color-accent-green);
 }
-
 #filters .active {
   border-color: var(--color-accent-green);
   background: var(--color-accent-green);
   color: #fff;
   font-weight: 600;
 }
-
 #clear-completed {
   color: var(--color-accent-red);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   transition: color 0.2s ease;
 }
-
 #clear-completed:hover {
   color: #b71c1c;
 }
@@ -217,22 +191,21 @@ footer {
   .container {
     max-width: 70rem;
     padding: 2.5rem;
+    font-size: 1.5rem; /* slightly bigger text */
   }
-
   footer {
     flex-direction: column;
     gap: 1.5rem;
+    font-size: 1.4rem;
   }
-
   .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-
   #filters {
     justify-content: center;
-    margin: 0 auto; /* ✅ center filters row */
+    margin: 0 auto;
   }
 }
 
@@ -241,24 +214,22 @@ footer {
   .container {
     max-width: 96rem;
     padding: 3rem;
+    font-size: 1.6rem; /* even bigger base text */
   }
-
   footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-size: 1.4rem;
   }
-
   #filters {
     flex: 1;
     justify-content: center;
   }
-
   #task-count {
     text-align: left;
     flex: 1;
   }
-
   #clear-completed {
     text-align: right;
     flex: 1;

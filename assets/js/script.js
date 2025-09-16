@@ -73,6 +73,7 @@ function renderTasks() {
             updateTaskUI(task, li, checkbox);   // sync UI + save 
             console.log(task.completed);    // debugging: output value of completed from task object
             console.log(task);    // debugging: output the check/uncheck object
+            updateTaskCount();
         });
 
         // delete button listener
@@ -90,7 +91,7 @@ function renderTasks() {
         console.log(task) // debugging: log each task in console
     }
 
-    console.log(taskList.children.length);  // debugging: output the length of the array
+    updateTaskCount()
 }
 
 function updateTaskUI(task, li, checkbox) {
@@ -121,4 +122,25 @@ function addTask(taskText) {
     saveTasks();
     renderTasks();
     newTask.value = ""; // reset input
+}
+
+function updateTaskCount() {
+    // variable to store number of active tasks
+    let activeTasks = 0;
+
+    // loop through each task in tasks array
+    for (const task of tasks) {
+        // if task is not complete
+        if (!task.completed) {
+            activeTasks++;  // increment active tasks number
+        }
+    }
+
+    if (activeTasks === 0 || activeTasks > 1) {
+        // update task count in the UI
+        taskCounter.textContent = `${activeTasks} items left`;
+    }
+    else {
+        taskCounter.textContent = `${activeTasks} item left`;
+    }
 }

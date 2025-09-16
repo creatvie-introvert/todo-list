@@ -26,10 +26,28 @@ function renderTasks() {
 
     // loop through each task in tasks (ln8) 
     for (const task of tasks) {
-        const newLi = document.createElement('li');
-        newLi.textContent = task.task;
+        // create new <li> element
+        const li = document.createElement('li');
+        li.classList.add('task-text');
 
-        taskList.appendChild(newLi);
+        // create <checkbox> element
+        const checkbox = document.createElement('input')
+        checkbox.type = 'checkbox';
+
+        // create a <span> element for text from task in task object
+        const span = document.createElement('span');
+        span.textContent = task.task;
+
+        // create <button> element
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'X';
+        deleteBtn.classList.add('delete-task');
+        
+        // add chckbox, span and deleteBtn to the li
+        li.append(checkbox, span, deleteBtn);
+
+        // add each li to the end of the ul
+        taskList.appendChild(li);
         console.log(task) // debugging: log each task in console
     }
 

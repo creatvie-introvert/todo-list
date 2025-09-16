@@ -11,7 +11,19 @@ console.log(tasks);
 renderTasks();
 
 addBtn.addEventListener('click', () => {
-  addTask(newTask.value);
+    // call function
+    addTask(newTask.value);
+});
+
+newTask,addEventListener('keydown', (event) => {
+    // check if the key pressed is 'Enter'
+    if (event.key === 'Enter') {
+        // prevent the default browser action (e.g., form-submission)
+        event.preventDefault();
+
+        // call function
+        addTask(newTask.value);
+    }
 });
 
 function saveTasks() {

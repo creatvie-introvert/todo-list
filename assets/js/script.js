@@ -10,6 +10,10 @@ console.log(tasks);
 
 renderTasks();
 
+addBtn.addEventListener('click', () => {
+  addTask(newTask.value);
+});
+
 function saveTasks() {
     // convert array of objects to JSON sting and store it in localStorage
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -62,7 +66,7 @@ function renderTasks() {
         // delete button listener
         deleteBtn.addEventListener('click', () => {
             // remove task from data object
-            const idx = tasks.indexOf(task);   // find index of task
+            const idx = tasks.findIndex(t => t.id === task.id);   // find id of task
             if (idx !== -1) tasks.splice(idx, 1);
 
             saveTasks();    // save changes
@@ -86,4 +90,23 @@ function updateTaskUI(task, li, checkbox) {
     else {
         li.classList.remove('task-completed'); // remove .task-completed from the li
     }
+}
+
+function addTask(taskText) {
+    // check if the task text is empty or contains only whitespace.
+    if (taskText.trim() === '') {
+        return; // stop function if input is empty or spaces
+    }
+
+    // create new task object
+    const taskAdded = {
+        id: Date.now().toString(),
+        task: taskText,
+        completed: false
+    };
+
+    tasks.push(taskAdded); // update array
+    saveTasks();
+    renderTasks();
+    newTask.value = ""; // reset input
 }

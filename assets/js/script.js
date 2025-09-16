@@ -5,22 +5,10 @@ const taskCounter = document.querySelector('#task-count');
 const filterBtn = document.querySelector('#filters');
 const clearBtn = document.querySelector('#clear-completed');
 
-// create an array of objects
-// const tasks = [
-//     {
-//         id: '1',
-//         task: "sample task",
-//         completed: false
-//     },
-//     {
-//         id: '2',
-//         task: 'another sample task',
-//         completed: false
-//     }
-// ];
-
 const tasks = loadTasks();
 console.log(tasks);
+
+renderTasks();
 
 function saveTasks() {
     // convert array of objects to JSON sting and store it in localStorage
@@ -30,4 +18,14 @@ function saveTasks() {
 function loadTasks() {
     // retrieve the string 'tasks' from localStorage, return as an array (or empty if none saved)
     return JSON.parse(localStorage.getItem('tasks')) || [];
+}
+
+function renderTasks() {
+    // remove all children from taskList
+    taskList.replaceChildren();
+
+    // loop through each task in tasks (ln8) 
+    for (const task of tasks) {
+        console.log(task) // debugging: log each task in console
+    }
 }

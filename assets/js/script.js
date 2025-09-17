@@ -195,6 +195,10 @@ function setFilter(filter) {
     filterBtns.forEach(button => {
         if (button.dataset.filter === currentFilter) {
             button.classList.add('active');
+            button.setAttribute('aria-current', 'true');
+        }
+        else {
+            button.removeAttribute('aria-current');
         }
     });
 

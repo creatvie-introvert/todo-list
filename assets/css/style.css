@@ -10,16 +10,6 @@
   --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Dark mode */
-[data-theme="dark"] {
-  --color-background: #1C1B1A;
-  --color-surface: #2A2A28;
-  --color-text: #FDFCF9;
-  --color-accent-green: #A4C639;
-  --color-accent-red: #F87171;
-  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
 /* === CSS Reset === */
 *, *::before, *::after {
   box-sizing: border-box;

@@ -10,7 +10,7 @@ const clearBtn = document.querySelector('#clear-completed');
 // get all filter buttons
 const filterBtns = document.querySelectorAll('button[data-filter]');   
 
-const tasks = loadTasks();
+let tasks = loadTasks();
 console.log(tasks);
 
 renderTasks();
@@ -18,6 +18,17 @@ renderTasks();
 addBtn.addEventListener('click', () => {
     // call function
     addTask(newTask.value);
+});
+
+newTask.addEventListener('keydown', (event) => {
+    // check if the key pressed is 'Enter'
+    if (event.key === 'Enter') {
+        // prevent the default browser action (e.g., form-submission)
+        event.preventDefault();
+
+        // call function
+        addTask(newTask.value);
+    }
 });
 
 // loop through all filter buttons
@@ -31,15 +42,8 @@ filterBtns.forEach(button =>{
     });
 });
 
-newTask.addEventListener('keydown', (event) => {
-    // check if the key pressed is 'Enter'
-    if (event.key === 'Enter') {
-        // prevent the default browser action (e.g., form-submission)
-        event.preventDefault();
-
-        // call function
-        addTask(newTask.value);
-    }
+clearBtn.addEventListener('click', () => {
+    clearCompletedTasks();
 });
 
 function saveTasks() {
@@ -186,4 +190,17 @@ function setFilter(filter) {
 
     renderTasks();
     console.log(currentFilter); // debugging: log the selected filter
+}
+
+// function to clear all completed tasks from the task list
+function clearCompletedTasks() {
+    // debugging: log the users click
+    console.log('you pressed the clear button');    
+
+    let incompleteTasks = tasks.filter(task => task.completed === false); 
+
+    tasks = incompleteTasks;
+
+    saveTasks();
+    renderTasks();
 }

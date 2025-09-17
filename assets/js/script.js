@@ -1,9 +1,14 @@
+let currentFilter = 'all'; // variable to store the currently selected filter, with all as default
+
 const newTask = document.querySelector('#new-task');
 const addBtn = document.querySelector('#add-task');
 const taskList = document.querySelector('#task-list');
 const taskCounter = document.querySelector('#task-count');
 const filterBtn = document.querySelector('#filters');
 const clearBtn = document.querySelector('#clear-completed');
+
+// get all filter buttons
+const filterBtns = document.querySelectorAll('button[data-filter]');   
 
 const tasks = loadTasks();
 console.log(tasks);
@@ -15,7 +20,18 @@ addBtn.addEventListener('click', () => {
     addTask(newTask.value);
 });
 
-newTask,addEventListener('keydown', (event) => {
+// loop through all filter buttons
+filterBtns.forEach(button =>{
+    // add a click event listener to each filter button
+    button.addEventListener('click', () => {
+        // get the value from the data-filter attribute
+        const selectedFilter = button.dataset.filter;
+
+        // setFilter(selectedFilter);  call function to update the current filter
+    });
+});
+
+newTask.addEventListener('keydown', (event) => {
     // check if the key pressed is 'Enter'
     if (event.key === 'Enter') {
         // prevent the default browser action (e.g., form-submission)
@@ -91,7 +107,7 @@ function renderTasks() {
         console.log(task) // debugging: log each task in console
     }
 
-    updateTaskCount()
+    updateTaskCount();
 }
 
 function updateTaskUI(task, li, checkbox) {
@@ -137,10 +153,18 @@ function updateTaskCount() {
     }
 
     if (activeTasks === 0 || activeTasks > 1) {
-        // update task count in the UI
+        // update task count in the UI to show 0 or more than 1 task active
         taskCounter.textContent = `${activeTasks} items left`;
     }
     else {
+        // update task count in the UI to show 1 task active
         taskCounter.textContent = `${activeTasks} item left`;
     }
+}
+
+// function to update the global filter
+function setFilter(filter) {
+    currentFilter = filter; // update selected filter
+
+    console.log(currentFilter); // debugging: log the selected filter
 }

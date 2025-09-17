@@ -27,7 +27,7 @@ filterBtns.forEach(button =>{
         // get the value from the data-filter attribute
         const selectedFilter = button.dataset.filter;
 
-        // setFilter(selectedFilter);  call function to update the current filter
+        setFilter(selectedFilter);  // call function to update the current filter
     });
 });
 
@@ -56,8 +56,24 @@ function renderTasks() {
     // remove all children from taskList
     taskList.replaceChildren();
 
+    // variable to store filtered tasks
+    let filteredTasks;
+
+    if (currentFilter === 'all') {
+        // show everything from tasks array
+        filteredTasks = tasks;  
+    }
+    else if (currentFilter === 'active') {
+        // show only active from tasks array
+        filteredTasks = tasks.filter(task => task.completed === false);
+    }
+    else if (currentFilter === 'completed') {
+        // show only completed from tasks array
+        filteredTasks = tasks.filter(task => task.completed === true);
+    }
+    
     // loop through each task in tasks (ln8) 
-    for (const task of tasks) {
+    for (const task of filteredTasks) {
         // create new <li> element
         const li = document.createElement('li');
 
@@ -89,6 +105,8 @@ function renderTasks() {
             updateTaskUI(task, li, checkbox);   // sync UI + save 
             console.log(task.completed);    // debugging: output value of completed from task object
             console.log(task);    // debugging: output the check/uncheck object
+            
+            saveTasks();    // save changes
             updateTaskCount();
         });
 
@@ -166,5 +184,6 @@ function updateTaskCount() {
 function setFilter(filter) {
     currentFilter = filter; // update selected filter
 
+    renderTasks();
     console.log(currentFilter); // debugging: log the selected filter
 }

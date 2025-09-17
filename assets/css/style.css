@@ -177,6 +177,9 @@ footer {
   color: #fff;
   font-weight: 600;
 }
+#filters .active:hover {
+  color: #fff;
+}
 #clear-completed {
   color: var(--color-accent-red);
   cursor: pointer;

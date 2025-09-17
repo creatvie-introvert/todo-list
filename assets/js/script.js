@@ -14,6 +14,7 @@ let tasks = loadTasks();
 console.log(tasks);
 
 renderTasks();
+setFilter(currentFilter);
 
 addBtn.addEventListener('click', () => {
     // call function
@@ -32,12 +33,13 @@ newTask.addEventListener('keydown', (event) => {
 });
 
 // loop through all filter buttons
-filterBtns.forEach(button =>{
+filterBtns.forEach(button =>{  
     // add a click event listener to each filter button
     button.addEventListener('click', () => {
         // get the value from the data-filter attribute
         const selectedFilter = button.dataset.filter;
-
+        
+        
         setFilter(selectedFilter);  // call function to update the current filter
     });
 });
@@ -112,6 +114,7 @@ function renderTasks() {
             
             saveTasks();    // save changes
             updateTaskCount();
+            // setFilter(filter);
         });
 
         // delete button listener
@@ -187,6 +190,13 @@ function updateTaskCount() {
 // function to update the global filter
 function setFilter(filter) {
     currentFilter = filter; // update selected filter
+    clearActiveButtonState();
+
+    filterBtns.forEach(button => {
+        if (button.dataset.filter === currentFilter) {
+            button.classList.add('active');
+        }
+    });
 
     renderTasks();
     console.log(currentFilter); // debugging: log the selected filter
@@ -203,4 +213,10 @@ function clearCompletedTasks() {
 
     saveTasks();
     renderTasks();
+}
+
+function clearActiveButtonState() {
+    filterBtns.forEach(button => {
+        button.classList.remove('active');
+    });
 }

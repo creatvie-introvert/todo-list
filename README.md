@@ -1,5 +1,5 @@
 # To-Do List
-[To-Do List LiveSite]() <!-- add live site link -->
+[To-Do List LiveSite](https://creatvie-introvert.github.io/todo-list/)
 
 The To-Do List App is a simple, responsive, and interactive web application designed to help users organise daily tasks. Built using HTML, CSS, and vanilla JavaScript, it allows users to add, complete, and delete tasks. Tasks are saved in localStorage so they persist between sessions.
 
@@ -272,4 +272,4 @@ The live site will be available at:
 3. Click the green **Code** button and copy the link.  
 4. In your terminal:  
    ```bash
-   git clone https://github.com/your-username/todo-list.git
+   git clone https://github.com/creatvie-introvert/todo-list
